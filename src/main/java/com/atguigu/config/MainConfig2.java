@@ -1,12 +1,18 @@
 package com.atguigu.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
 import com.atguigu.bean.Person;
+import com.atguigu.condition.LinuxCondition;
+import com.atguigu.condition.WindowsCondition;
 
+
+//类中组件统一设置满足当前条件，这个类中配置的所有bean注册才能生效
+@Conditional({WindowsCondition.class})
 @Configuration
 public class MainConfig2 {
 
@@ -38,4 +44,25 @@ public class MainConfig2 {
 		System.out.println("给容器中添加person。。。");
 		return new Person("wangwu", 32);
 	}
+	
+	
+	/**
+	 * @Conditional：按照一定的条件进行判断，满足条件给容器注册Bean
+	 * 如果系统是Windows系统，给容器中注册（"Windows"）
+	 * 如果系统是linux系统，给容器注册（"linux"）
+	 */
+	
+	@Bean("Windows")
+	public Person person01(){
+		return new Person("Windows", 26);
+	}
+	
+	@Conditional({LinuxCondition.class})
+	@Bean("linux")
+	public Person person02(){
+		return new Person("linux", 22);
+	}
+	
+	
+	
 }
