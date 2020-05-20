@@ -2,6 +2,7 @@ package com.atguigu.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
 import com.atguigu.bean.Person;
@@ -22,10 +23,16 @@ public class MainConfig2 {
 	 * 			以后每次获取就是直接从容器中拿（map.get()）。
 	 * request：同一次请求创建一个实例
 	 * session：同一个session创建实例
+	 * 
+	 * 懒加载：针对单实例
+	 * 		单实例Bean，默认在容器启动的时候创建对象
+	 * 		懒加载：容器启动不创建对象，第一次使用（获取）Bean的时候创建对象
+	 * 
 	 * @return
 	 */
-	@Scope("prototype")
+//	@Scope("prototype")
 	// 默认是单实例的
+	@Lazy
 	@Bean
 	public Person person(){
 		System.out.println("给容器中添加person。。。");
