@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
 import com.atguigu.bean.Color;
+import com.atguigu.bean.ColorFactoryBean;
 import com.atguigu.bean.Person;
 import com.atguigu.bean.Red;
 import com.atguigu.condition.LinuxCondition;
@@ -78,7 +79,14 @@ public class MainConfig2 {
 	 * 		1）@Import(要导入到容器中的组件)，容器中就会自动注册这个组件，id默认是全类名
 	 * 		2）@ImportSelector:返回需要导入组件的全数组，springboot中用的比较多
 	 * 		3）@ImportBeanDefinitionRegistrar：手动注册bean到容器中
-	 * 
+	 * 4、使用Spring提供的 FactoryBean（工厂Bean）
+	 * 		1）默认获取到的是工厂bean调用getObject创建的对象
+	 * 		2）要获取工厂bean奔上，我们需要给id前面加一个&
+	 *			 &ColorFactoryBean
 	 */
+	@Bean
+	public ColorFactoryBean colorFactoryBean(){
+		return new ColorFactoryBean();
+	}
 	
 }

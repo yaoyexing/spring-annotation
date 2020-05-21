@@ -15,7 +15,22 @@ import com.atguigu.config.MainConfig2;
 
 public class IOCTest {
 
+	ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
+	
 	@Test
+	public void testColorFactoryBean(){
+		Object bean = applicationContext.getBean("colorFactoryBean");
+		Object bean2 = applicationContext.getBean("colorFactoryBean");
+		
+		System.out.println("bean的类型："+bean.getClass());
+		System.out.println("bean2的类型："+bean2.getClass());
+		System.out.println(bean == bean2);
+		Object bean3 = applicationContext.getBean("&colorFactoryBean");
+		System.out.println("bean3的类型："+bean3.getClass());
+	}
+	
+	
+	/*@Test
 	public void testImport(){
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
 		printBeans(applicationContext);
@@ -28,7 +43,7 @@ public class IOCTest {
 		for (String name : beanDefinitionNames) {
 			System.out.println(name);
 		}
-	}
+	}*/
 	/*@SuppressWarnings("resource")
 	@Test
 	public void test03(){
