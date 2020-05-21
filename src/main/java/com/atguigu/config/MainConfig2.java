@@ -3,10 +3,13 @@ package com.atguigu.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 
+import com.atguigu.bean.Color;
 import com.atguigu.bean.Person;
+import com.atguigu.bean.Red;
 import com.atguigu.condition.LinuxCondition;
 import com.atguigu.condition.WindowsCondition;
 
@@ -14,6 +17,8 @@ import com.atguigu.condition.WindowsCondition;
 //类中组件统一设置满足当前条件，这个类中配置的所有bean注册才能生效
 @Conditional({WindowsCondition.class})
 @Configuration
+@Import({Color.class,Red.class})
+//导入组件，id默认为组件的全类名
 public class MainConfig2 {
 
 	/**
@@ -63,6 +68,13 @@ public class MainConfig2 {
 		return new Person("linux", 22);
 	}
 	
-	
+	/**
+	 * 给容器中注册组件的方式
+	 * 1、包扫描+组件标注注解（@Controller、@Service、@Repository、@Component）[局限于自己写的类]
+	 * 2、@Bean[导入第三方包里面的组件]
+	 * 3、@Import[快速给容器中导入组件]
+	 * 		1）@Import(要导入到容器中的组件)，容器中就会自动注册这个组件，id默认是全类名
+	 * 
+	 */
 	
 }
