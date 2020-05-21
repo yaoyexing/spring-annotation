@@ -8,6 +8,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.Environment;
 
+import com.atguigu.bean.Blue;
 import com.atguigu.bean.Person;
 import com.atguigu.config.MainConfig;
 import com.atguigu.config.MainConfig2;
@@ -18,6 +19,8 @@ public class IOCTest {
 	public void testImport(){
 		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
 		printBeans(applicationContext);
+		Blue bean = applicationContext.getBean(Blue.class);
+		System.out.println(bean);
 	}
 	
 	private void printBeans(ApplicationContext applicationContext){

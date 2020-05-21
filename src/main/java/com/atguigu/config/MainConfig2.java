@@ -11,13 +11,14 @@ import com.atguigu.bean.Color;
 import com.atguigu.bean.Person;
 import com.atguigu.bean.Red;
 import com.atguigu.condition.LinuxCondition;
+import com.atguigu.condition.MyImportSelector;
 import com.atguigu.condition.WindowsCondition;
 
 
 //类中组件统一设置满足当前条件，这个类中配置的所有bean注册才能生效
 @Conditional({WindowsCondition.class})
 @Configuration
-@Import({Color.class,Red.class})
+@Import({Color.class,Red.class,MyImportSelector.class})
 //导入组件，id默认为组件的全类名
 public class MainConfig2 {
 
@@ -74,6 +75,8 @@ public class MainConfig2 {
 	 * 2、@Bean[导入第三方包里面的组件]
 	 * 3、@Import[快速给容器中导入组件]
 	 * 		1）@Import(要导入到容器中的组件)，容器中就会自动注册这个组件，id默认是全类名
+	 * 		2）@ImportSelector:返回需要导入组件的全数组
+	 * 
 	 * 
 	 */
 	
