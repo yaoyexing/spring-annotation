@@ -25,7 +25,9 @@ import com.atguigu.bean.Car;
  * 1）指定初始化、销毁方法
  * 		指定init-method="" destroy-method=""
  * 2）通过让bean实现InitializingBean接口定义初始化逻辑，实现DisposableBean接口定义销毁逻辑
- * 
+ * 3）可以使用JSR250:
+ * 		@PostConstruct：在bean创建完成并且属性赋值完成，来执行初始化方法
+ * 		@PreDestroy：在容器销毁bean之前通知我们进行清理操作
  * 
  * 
  * @author yaoran
