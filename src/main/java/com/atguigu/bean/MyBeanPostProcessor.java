@@ -1,4 +1,4 @@
-package com.atguigu.config;
+package com.atguigu.bean;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

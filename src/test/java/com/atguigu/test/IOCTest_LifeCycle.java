@@ -12,7 +12,7 @@ public class IOCTest_LifeCycle {
 		AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfigOfLifeCycle.class);
 		System.out.println("容器创建完成。。。");
 	
-		applicationContext.getBean("car");
+//		applicationContext.getBean("car");
 		// 关闭容器
 		applicationContext.close();
 	}
