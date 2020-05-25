@@ -24,6 +24,17 @@ import com.atguigu.bean.Car;
  * 		单实例：容器关闭的时候进行销毁	
  * 		多实例：容器不会管理这个bean，容器不会调用销毁方法
  * 
+ * 遍历得到容器中所有的BeanPostProcessor，挨个执行beforeInitialization，
+ * 一但返回null，跳出for循环，不会执行后边的BeanPostProcessor
+ * 
+ * BeanPostProcessor原理
+ * populateBean(beanName, mbd, instanceWrapper);给bean进行属性赋值
+ * {
+ * 	applyBeanPostProcessorsBeforeInitialization(wrappedBean, beanName);
+ * 	initializeBean(beanName, exposedObject, mbd);执行初始化
+ * 	applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);
+ * }
+ * 
  * 1）指定初始化、销毁方法
  * 		指定init-method="" destroy-method=""
  * 2）通过让bean实现InitializingBean接口定义初始化逻辑，实现DisposableBean接口定义销毁逻辑
@@ -34,10 +45,6 @@ import com.atguigu.bean.Car;
  * 		在bean初始化前后进行一些处理工作；
  * 		postProcessBeforeInitialization：在初始化之前工作
  * 		postProcessAfterInitialization：在初始化之后工作
- * 
- * 
- * 
- * 
  * 
  * @author yaoran
  *
