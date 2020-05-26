@@ -50,7 +50,7 @@ public class MainConfig2 {
 	@Bean
 	public Person person(){
 		System.out.println("给容器中添加person。。。");
-		return new Person("wangwu", 32);
+		return new Person("wangwu", 32, "22");
 	}
 	
 	
@@ -62,13 +62,13 @@ public class MainConfig2 {
 	
 	@Bean("Windows")
 	public Person person01(){
-		return new Person("Windows", 26);
+		return new Person("Windows", 26, "33");
 	}
 	
 	@Conditional({LinuxCondition.class})
 	@Bean("linux")
 	public Person person02(){
-		return new Person("linux", 22);
+		return new Person("linux", 22, "44");
 	}
 	
 	/**

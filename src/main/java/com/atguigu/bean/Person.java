@@ -15,6 +15,9 @@ public class Person {
 	@Value("#{19+3}")
 	private Integer age;
 	
+	@Value("${person.nickName}")
+	private String nickName;
+
 	public String getName() {
 		return name;
 	}
@@ -31,19 +34,29 @@ public class Person {
 		this.age = age;
 	}
 	
-	@Override
-	public String toString() {
-		return "Person [name=" + name + ", age=" + age + "]";
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	
+	@Override
+	public String toString() {
+		return "Person [name=" + name + ", age=" + age + ", nickName=" + nickName + "]";
+	}
+
 	public Person() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	public Person(String name, Integer age) {
+
+	public Person(String name, Integer age, String nickName) {
 		super();
 		this.name = name;
 		this.age = age;
+		this.nickName = nickName;
 	}
+	
 }
